@@ -1,0 +1,78 @@
+{
+  "size": 0,
+    "query": {
+        "bool": {
+	      "must": [
+	              {
+		                "term": {
+				            "msg.link.server-ip-home.country.keyword": {
+					                  "value": "United States"
+							              }
+								                }
+										        },
+											        {
+												          "range": {
+													              "timestamp": {
+														                    "lte": "2022-08-22T07:33:27Z",
+																                  "gte": "2022-08-15T07:33:27Z"
+																		              }
+																			                }
+																					        },
+																						        {
+																							          "term": {
+																								              "msg.type": {
+																									                    "value": "12"
+																											                }
+																													          }
+																														          },
+																															          {
+																																            "term": {
+																																	                "msg.link.protocol": {
+																																			              "value": "17"
+																																				                  }
+																																						            }
+																																							            }
+																																								          ],
+																																									        "must_not": [
+																																										        {
+																																											          "terms": {
+																																												              "msg.id.config.keyword": [
+																																													                    "GX102010010133",
+																																															                  "GX102010010066"
+																																																	              ]
+																																																		                }
+																																																				        },
+																																																					        {
+																																																						          "term": {
+																																																							              "msg.link.echoQuality.lossRatio": {
+																																																								                    "value": "10000"
+																																																										                }
+																																																												          }
+																																																													          }
+																																																														        ]
+																																																															    }
+																																																															      },
+																																																															        "sort": [
+																																																																    {
+																																																																          "timestamp": {
+																																																																	          "order": "desc"
+																																																																		        }
+																																																																			    }
+																																																																			      ],
+																																																																			        "aggs": {
+																																																																				    "percentiles": {
+																																																																				          "percentile_ranks": {
+																																																																					          "field": "msg.link.echoQuality.delayAvg",
+																																																																						          "values": [
+																																																																							            50,
+																																																																								              100,
+																																																																									                150,
+																																																																											          200,
+																																																																												            300,
+																																																																													              400,
+																																																																														                500
+																																																																																        ]
+																																																																																	      }
+																																																																																	          }
+																																																																																		    }
+																																																																																		    }
